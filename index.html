@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Ana Julia Reis de Mattos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 60px 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        a {
+            display: block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ana Julia</h1>
+        <p class="subtitle">Desenvolvedora de Sistemas</p>
+        <div class="menu">
+            <a href="cv/curriculo.html">📄 Currículo</a>
+            <a href="form/formulario.html">📋 Formulário</a>
+        </div>
+    </div>
+</body>
+</html>

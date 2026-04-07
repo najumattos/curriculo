@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo | Ana Julia Reis de Mattos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #3b82f6;
+            --text: #334155;
+            --bg: #f8fafc;
+        }
+
+        body.dark-mode {
+            --primary: #e2e8f0;
+            --accent: #60a5fa;
+            --text: #cbd5e1;
+            --bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode .container {
+            background: #1e293b;
+            color: var(--text);
+        }
+
+        header {
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 { color: var(--primary); margin: 0; font-size: 2.2rem; }
+        h2 { color: var(--accent); margin: 0; font-weight: 400; font-size: 1.2rem; }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        h3 {
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            margin-top: 30px;
+        }
+
+        .grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; }
+
+        .item { margin-bottom: 15px; }
+        h4 { margin: 0; color: var(--primary); }
+
+        footer { margin-top: 40px; text-align: center; }
+
+        .nav-button {
+            display: inline-block;
+            margin-left: 10px;
+            background: var(--accent);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            margin-right: 10px;
+        }
+
+        button:hover { background: var(--accent); }
+
+        .theme-toggle {
+            background: var(--accent);
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2);
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        @media print {
+            .no-print { display: none; }
+            body { padding: 0; }
+            .container { box-shadow: none; width: 100%; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-header">
+                <div class="title-group">
+                    <h1 id="nome">ANA JULIA REIS DE MATTOS</h1>
+                    <h2 id="titulo">Desenvolvedora de Sistemas</h2>
+                </div>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> <span id="email">anareismattos.dev@gmail.com</span></p>
+                    <p><i class="fas fa-phone"></i> <span id="telefone">(14) 92004-4824</span></p>
+                    <p><i class="fas fa-location-dot"></i> <span id="localizacao">Barra Bonita/SP</span></p>
+                    <p><i class="fab fa-github"></i> <span id="github">github.com/najumattos/</span></p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="objetivo">
+                <h3><i class="fas fa-bullseye"></i> OBJETIVO</h3>
+                <p id="objetivo-texto">Estudante de Backend focada em C#, .NET e MySQL. Especialista na API Connectamente com foco em arquitetura SOLID, testes unitários, autenticação JWT e fluxos de CI/CD via GitHub Actions.</p>
+            </section>
+
+            <div class="grid">
+                <div class="left-col">
+                    <section>
+                        <h3><i class="fas fa-graduation-cap"></i> FORMAÇÃO</h3>
+                        <div class="item">
+                            <h4 id="formacao-titulo">Técnico em Desenv. de Sistemas</h4>
+                            <p id="formacao-instituicao">ETEC Comendador João Rays</p>
+                            <small id="formacao-periodo">02/2025 - 07/2026</small>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3><i class="fas fa-book"></i> ESTUDOS</h3>
+                        <div id="estudos-lista">
+                            <p><strong>O Programador Pragmático</strong></p>
+                            <p><strong>Código Limpo (Clean Code)</strong></p>
+                            <p>Programa de Treinamento FDevs 2025</p>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="right-col">
+                    <section>
+                        <h3><i class="fas fa-briefcase"></i> EXPERIÊNCIA</h3>
+                        <div id="experiencia-lista">
+                            <div class="item">
+                                <h4>Lojas Silva (Estágio)</h4>
+                                <small>08/2025 - 12/2025</small>
+                                <p>Atuação com sistemas de PDV e gestão de estoque.</p>
+                            </div>
+                            <div class="item">
+                                <h4>Lojas Algodão Doce</h4>
+                                <small>11/2024 - 07/2025</small>
+                                <p>Foco em organização e comunicação interpessoal.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="no-print">
+            <button onclick="window.print()"><i class="fas fa-print"></i> Gerar PDF</button>
+            <button class="nav-button" onclick="window.location.href='../form/formulario.html';"><i class="fas fa-arrow-right"></i> Formulário</button>
+        </footer>
+    </div>
+    <button class="theme-toggle no-print" id="themeToggle" title="Alternar tema" aria-label="Alternar tema claro/escuro">
+        <i class="fas fa-moon"></i>
+    </button>
+    <script src="curriculo.js"></script>
+</body>
+</html>
