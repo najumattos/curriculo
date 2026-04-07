@@ -11,6 +11,12 @@
             --accent: #3b82f6;
             --text: #334155;
             --bg: #f8fafc;
+            --surface: #ffffff;
+            --border: rgba(51, 65, 85, 0.15);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --button-bg: #1e293b;
+            --button-text: #ffffff;
+            --button-hover: #3b82f6;
         }
 
         body.dark-mode {
@@ -18,6 +24,12 @@
             --accent: #60a5fa;
             --text: #cbd5e1;
             --bg: #0f172a;
+            --surface: #1e293b;
+            --border: rgba(148, 163, 184, 0.18);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.35);
+            --button-bg: #2563eb;
+            --button-text: #ffffff;
+            --button-hover: #60a5fa;
         }
 
         body {
@@ -32,14 +44,13 @@
         .container {
             max-width: 900px;
             margin: auto;
-            background: white;
+            background: var(--surface);
             padding: 40px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            transition: background-color 0.3s, color 0.3s;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
         }
 
         body.dark-mode .container {
-            background: #1e293b;
             color: var(--text);
         }
 
@@ -52,12 +63,90 @@
         h1 { color: var(--primary); margin: 0; font-size: 2.2rem; }
         h2 { color: var(--accent); margin: 0; font-weight: 400; font-size: 1.2rem; }
 
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .profile-header {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .profile-left {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
-            margin-top: 15px;
-            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .profile-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            flex-shrink: 0;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .title-group h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .title-group h2 {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .contact-info-left {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .contact-info-left p {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .contact-info-right {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 0.85rem;
+        }
+
+        .contact-info-right p {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-info span,
+        .contact-info a {
+            word-break: break-word;
         }
 
         h3 {
@@ -66,13 +155,49 @@
             color: var(--primary);
             text-transform: uppercase;
             font-size: 1.1rem;
-            margin-top: 30px;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
 
-        .grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; }
+        .grid { display: grid; }
+        .two-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
-        .item { margin-bottom: 15px; }
+        .item { margin-bottom: 8px; }
+        .formation-card,
+        .study-card,
+        .experience-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            background: var(--surface);
+            box-shadow: 0 1px 2px rgba(51, 65, 85, 0.06);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+        .card-header h4 {
+            margin: 0;
+            flex: 1;
+        }
+        .card-header small {
+            white-space: nowrap;
+            font-size: 0.8rem;
+        }
+        .formation-card p,
+        .experience-card p { margin: 2px 0; }
+        .study-card p { margin: 0; }
         h4 { margin: 0; color: var(--primary); }
+
+        @media (max-width: 780px) {
+            .contact-info,
+            .two-cols {
+                grid-template-columns: 1fr;
+            }
+        }
 
         footer { margin-top: 40px; text-align: center; }
 
@@ -83,8 +208,8 @@
         }
 
         button {
-            background: var(--primary);
-            color: white;
+            background: var(--button-bg);
+            color: var(--button-text);
             border: none;
             padding: 10px 20px;
             cursor: pointer;
@@ -93,7 +218,7 @@
             margin-right: 10px;
         }
 
-        button:hover { background: var(--accent); }
+        button:hover { background: var(--button-hover); }
 
         .theme-toggle {
             background: var(--accent);
@@ -127,15 +252,31 @@
     <div class="container">
         <header>
             <div class="profile-header">
-                <div class="title-group">
-                    <h1 id="nome">ANA JULIA REIS DE MATTOS</h1>
-                    <h2 id="titulo">Desenvolvedora de Sistemas</h2>
+                <div class="profile-left">
+                    <div class="profile-top">
+                        <div class="avatar">
+                            <img id="foto-perfil" src="" alt="Foto de Ana Julia">
+                        </div>
+                        <div class="title-group">
+                            <h1 id="nome"></h1>
+                            <h2 id="titulo"></h2>
+                        </div>
+                    </div>
+                    <div class="contact-info-left">
+                        <p><span id="idade"></span></p>
+                        <p>|</p>
+                        <p><span id="localizacao"></span></p>
+                        <p>|</p>
+                        <p><span id="estado_civil"></span></p>
+                        <p>|</p>
+                        <p><i class="fas fa-phone"></i> <a id="telefone" href="#" target="_blank" rel="noopener noreferrer"></a></p>
+                    </div>
                 </div>
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> <span id="email">anareismattos.dev@gmail.com</span></p>
-                    <p><i class="fas fa-phone"></i> <span id="telefone">(14) 92004-4824</span></p>
-                    <p><i class="fas fa-location-dot"></i> <span id="localizacao">Barra Bonita/SP</span></p>
-                    <p><i class="fab fa-github"></i> <span id="github">github.com/najumattos/</span></p>
+                <div class="contact-info-right">
+                    <p><i class="fas fa-envelope"></i> <span id="email"></span></p>
+                    <p><i class="fas fa-envelope"></i> <span id="email-secundario"></span></p>
+                    <p><i class="fab fa-github"></i> <a id="github" href="#" target="_blank" rel="noopener noreferrer"></a></p>
+                    <p><i class="fab fa-linkedin"></i> <a id="linkedin" href="#" target="_blank" rel="noopener noreferrer"></a></p>
                 </div>
             </div>
         </header>
@@ -143,53 +284,32 @@
         <main>
             <section id="objetivo">
                 <h3><i class="fas fa-bullseye"></i> OBJETIVO</h3>
-                <p id="objetivo-texto">Estudante de Backend focada em C#, .NET e MySQL. Especialista na API Connectamente com foco em arquitetura SOLID, testes unitários, autenticação JWT e fluxos de CI/CD via GitHub Actions.</p>
+                <p id="objetivo-texto"></p>
             </section>
 
             <div class="grid">
-                <div class="left-col">
+                <section>
+                    <h3><i class="fas fa-briefcase"></i> EXPERIÊNCIA</h3>
+                    <div id="experiencia-lista"></div>
+                </section>
+
+                <div class="two-cols">
                     <section>
                         <h3><i class="fas fa-graduation-cap"></i> FORMAÇÃO</h3>
-                        <div class="item">
-                            <h4 id="formacao-titulo">Técnico em Desenv. de Sistemas</h4>
-                            <p id="formacao-instituicao">ETEC Comendador João Rays</p>
-                            <small id="formacao-periodo">02/2025 - 07/2026</small>
-                        </div>
+                        <div id="formacao-lista"></div>
                     </section>
 
                     <section>
                         <h3><i class="fas fa-book"></i> ESTUDOS</h3>
-                        <div id="estudos-lista">
-                            <p><strong>O Programador Pragmático</strong></p>
-                            <p><strong>Código Limpo (Clean Code)</strong></p>
-                            <p>Programa de Treinamento FDevs 2025</p>
-                        </div>
-                    </section>
-                </div>
-
-                <div class="right-col">
-                    <section>
-                        <h3><i class="fas fa-briefcase"></i> EXPERIÊNCIA</h3>
-                        <div id="experiencia-lista">
-                            <div class="item">
-                                <h4>Lojas Silva (Estágio)</h4>
-                                <small>08/2025 - 12/2025</small>
-                                <p>Atuação com sistemas de PDV e gestão de estoque.</p>
-                            </div>
-                            <div class="item">
-                                <h4>Lojas Algodão Doce</h4>
-                                <small>11/2024 - 07/2025</small>
-                                <p>Foco em organização e comunicação interpessoal.</p>
-                            </div>
-                        </div>
+                        <div id="estudos-lista"></div>
                     </section>
                 </div>
             </div>
         </main>
 
         <footer class="no-print">
-            <button onclick="window.print()"><i class="fas fa-print"></i> Gerar PDF</button>
-            <button class="nav-button" onclick="window.location.href='../form/formulario.html';"><i class="fas fa-arrow-right"></i> Formulário</button>
+            <button onclick="baixarPDF()"><i class="fas fa-print"></i> Baixar PDF</button>
+            <button class="nav-button" disabled aria-disabled="true"><i class="fas fa-arrow-right"></i> Formulário</button>
         </footer>
     </div>
     <button class="theme-toggle no-print" id="themeToggle" title="Alternar tema" aria-label="Alternar tema claro/escuro">

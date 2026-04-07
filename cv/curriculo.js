@@ -2,25 +2,39 @@
 const curriculoData = {
     // Informações pessoais
     nome: "ANA JULIA REIS DE MATTOS",
-    titulo: "Desenvolvedora de Sistemas",
+    titulo: "Estudante de Backend | C#, .NET & MySQL ",
 
     // Contato
     contato: {
-        email: "anareismattos.dev@gmail.com",
-        telefone: "(14) 92004-4824",
+        foto: "foto-perfil.jpg",
+        idade: "24 anos",
         localizacao: "Barra Bonita/SP",
-        github: "github.com/najumattos/"
+        telefone: "(14) 92004-4824",
+        estado_civil: "Solteira",
+        email: "anareismattos.dev@gmail.com",
+        emailSecundario: "anajuliamattos02@gmail.com",
+        github: "github.com/najumattos/",
+        githubLink: "https://github.com/najumattos/",
+        linkedin: "linkedin.com/in/anajuliamattos/",
+        linkedinLink: "https://www.linkedin.com/in/anajuliamattos/"
     },
 
     // Objetivo
-    objetivo: "Estudante de Backend focada em C#, .NET e MySQL. Especialista na API Connectamente com foco em arquitetura SOLID, testes unitários, autenticação JWT e fluxos de CI/CD via GitHub Actions.",
+    objetivo: "Desenvolvedora focada em arquitetura de sistemas e qualidade de código (SOLID, Testes Unitários). Responsável por pela API Connectamente com implementação de autenticação JWT, integração de Docker e fluxos de CI/CD via GitHub Actions. Experiência prática em React e Metodologias Ágeis (Kanban). Minha vivência anterior no comércio e como líder de turma me proporcionou soft skills diferenciadas em comunicação, liderança e resolução de problemas.",
 
     // Formação
-    formacao: {
-        titulo: "Técnico em Desenv. de Sistemas",
-        instituicao: "ETEC Comendador João Rays",
-        periodo: "02/2025 - 07/2026"
-    },
+    formacao: [
+        {
+            titulo: "Técnico em Desenv. de Sistemas",
+            instituicao: "ETEC Comendador João Rays",
+            periodo: "02/2025 - 07/2026"
+        },
+        {
+            titulo: "Auxiliar em Marketing",
+            instituicao: "ETEC Comendador João Rays",
+            periodo: "02/2024 - 07/2024"
+        }
+    ],
 
     // Estudos
     estudos: [
@@ -34,12 +48,17 @@ const curriculoData = {
         {
             cargo: "Lojas Silva (Estágio)",
             periodo: "08/2025 - 12/2025",
-            descricao: "Atuação com sistemas de PDV e gestão de estoque."
+            descricao: "Contato com sistemas de PDV (Ponto de Venda), gestão de estoque, utilização de softwares de gestão, controle de caixa e curadoria de redes sociais."
         },
         {
             cargo: "Lojas Algodão Doce",
             periodo: "11/2024 - 07/2025",
-            descricao: "Foco em organização e comunicação interpessoal."
+            descricao: "Desenvolvimento de habilidades aprendidas no curso de Marketing como, trabalho em equipe, organização e comunicação interpessoal;"
+        },
+        {
+            cargo: "Upper Consultoria (Estágio)",
+            periodo: "11/2022 - 05/2023",
+            descricao: "Atuei no desenvolvimento de projetos Web e Mobile com Angular e Flutter, participando desde a manutenção de sistemas até a estruturação de novas aplicações do zero. Essa vivência foi fundamental para consolidar meu entendimento sobre o ciclo de vida de software e a importância de equipes organizadas, despertando meu interesse prático por Arquitetura de Sistemas."
         }
     ]
 };
@@ -51,31 +70,58 @@ function popularCurriculo() {
     document.getElementById('titulo').textContent = curriculoData.titulo;
 
     // Contato
-    document.getElementById('email').textContent = curriculoData.contato.email;
-    document.getElementById('telefone').textContent = curriculoData.contato.telefone;
+    document.getElementById('foto-perfil').src = curriculoData.contato.foto;
+    document.getElementById('idade').textContent = curriculoData.contato.idade;
     document.getElementById('localizacao').textContent = curriculoData.contato.localizacao;
-    document.getElementById('github').textContent = curriculoData.contato.github;
+    document.getElementById('estado_civil').textContent = curriculoData.contato.estado_civil;
+    
+    // Telefone com link WhatsApp
+    const telefoneLink = document.getElementById('telefone');
+    const numeroWhatsApp = curriculoData.contato.telefone.replace(/\D/g, '');
+    const mensagem = encodeURIComponent('Olá Ana, sua página do Github ta bem legal');
+    telefoneLink.textContent = curriculoData.contato.telefone;
+    telefoneLink.href = `https://wa.me/55${numeroWhatsApp}?text=${mensagem}`;
+    
+    document.getElementById('email').textContent = curriculoData.contato.email;
+    document.getElementById('email-secundario').textContent = curriculoData.contato.emailSecundario;
+    const githubLink = document.getElementById('github');
+    githubLink.textContent = curriculoData.contato.github;
+    githubLink.href = curriculoData.contato.githubLink;
+    const linkedinLink = document.getElementById('linkedin');
+    linkedinLink.textContent = curriculoData.contato.linkedin;
+    linkedinLink.href = curriculoData.contato.linkedinLink;
 
     // Objetivo
     document.getElementById('objetivo-texto').textContent = curriculoData.objetivo;
 
     // Formação
-    document.getElementById('formacao-titulo').textContent = curriculoData.formacao.titulo;
-    document.getElementById('formacao-instituicao').textContent = curriculoData.formacao.instituicao;
-    document.getElementById('formacao-periodo').textContent = curriculoData.formacao.periodo;
+    const formacaoContainer = document.getElementById('formacao-lista');
+    formacaoContainer.innerHTML = curriculoData.formacao.map(item => `
+        <div class="item formation-card">
+            <div class="card-header">
+                <h4>${item.titulo}</h4>
+                <small>${item.periodo}</small>
+            </div>
+            <p>${item.instituicao}</p>
+        </div>
+    `).join('');
 
     // Estudos
     const estudosContainer = document.getElementById('estudos-lista');
-    estudosContainer.innerHTML = curriculoData.estudos.map(estudo =>
-        `<p><strong>${estudo}</strong></p>`
-    ).join('');
+    estudosContainer.innerHTML = curriculoData.estudos.map(estudo => `
+        <div class="item study-card">
+            <p><strong>${estudo}</strong></p>
+        </div>
+    `).join('');
 
     // Experiência
     const experienciaContainer = document.getElementById('experiencia-lista');
     experienciaContainer.innerHTML = curriculoData.experiencia.map(exp => `
-        <div class="item">
-            <h4>${exp.cargo}</h4>
-            <small>${exp.periodo}</small>
+        <div class="item experience-card">
+            <div class="card-header">
+                <h4>${exp.cargo}</h4>
+                <small>${exp.periodo}</small>
+            </div>
             <p>${exp.descricao}</p>
         </div>
     `).join('');
@@ -109,3 +155,27 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     });
 });
+
+// Função para baixar PDF estático
+function baixarPDF() {
+    // Ajuste o nome do arquivo PDF se necessário
+    const nomeArquivo = 'AnaMattosDEV.pdf'; // Nome do arquivo na pasta cv/
+    const nomeDownload = 'suaFuturaFuncionaria.pdf'; // Nome que será baixado
+    
+    fetch(nomeArquivo)
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = nomeDownload;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error('Erro ao baixar PDF:', error);
+            alert('Não foi possível baixar o PDF. Verifique se o arquivo existe.');
+        });
+}

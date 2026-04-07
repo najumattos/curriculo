@@ -63,6 +63,15 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
+
+        a.disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.7;
+            box-shadow: none;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +80,7 @@
         <p class="subtitle">Desenvolvedora de Sistemas</p>
         <div class="menu">
             <a href="cv/curriculo.html">📄 Currículo</a>
-            <a href="form/formulario.html">📋 Formulário</a>
+            <a class="disabled" aria-disabled="true">📋 Formulário</a>
         </div>
     </div>
 </body>
