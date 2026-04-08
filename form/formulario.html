@@ -20,7 +20,7 @@
             <p class="toggle-text" id="toggleText">📨 Mensagem Particular</p>
         </div>
         
-        <form>
+        <form id="meuFormulario">
             <div class="form-group">
                 <label for="nome">Nome</label>
                 <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
@@ -32,11 +32,11 @@
             </div>
 
             <div class="form-group">
-                <label for="mensagem">Mensagem</label>
+                <label  for="mensagem">Mensagem</label>
                 <textarea id="mensagem" name="mensagem" required placeholder="Digite sua mensagem"></textarea>
             </div>
 
-            <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Enviar Email</button>
+            <button id="btnEnviar" type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> Enviar</button>
         </form>
         
         <section class="messages-section">
@@ -57,5 +57,6 @@
         <i class="fas fa-moon"></i>
     </button>
     <script src="formulario.js"></script>
+    <script type="module" src="firebase-config.js"></script>
 </body>
 </html>
