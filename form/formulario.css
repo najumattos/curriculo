@@ -235,9 +235,11 @@ input:checked + .slider:before {
     opacity: 0;
     margin: 0;
     padding: 0;
-    border: none;
+    border: none;    
 }
-
+.hidden {
+    display: none !important;
+}
 .messages-section {
     margin-top: 50px;
     padding-top: 30px;

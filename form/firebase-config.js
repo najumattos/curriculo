@@ -1,8 +1,6 @@
-  // 1. Importa o que é necessário (App e Firestore)
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
 
-  // 2. Sua configuração (já está correta!)
   const firebaseConfig = {
     apiKey: "AIzaSyB-dcbQD9HUdiXLUhgyGeIh9BO6zrVYHv8",
     authDomain: "formgithubpages.firebaseapp.com",
@@ -13,7 +11,7 @@
     measurementId: "G-S0RP68L90L"
   };
 
-  // 3. Inicialize o Firebase e o Firestore
+  // 3. Inicializa o Firebase e o Firestore
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
@@ -21,6 +19,7 @@
 const form = document.getElementById('meuFormulario');
 const toggle = document.getElementById('messageToggle');
 
+// 4. Lidar com envio do formulário
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Impede o recarregamento da página
     const dados = {
@@ -69,3 +68,47 @@ form.addEventListener('submit', async (e) => {
       console.error("Erro ao salvar: ", e);
     }
   }
+
+  const messagesList = document.getElementById('messagesList');
+
+// Função para listar mensagens do mural público
+const carregarMural = () => {
+    // Ordena pela data (mais recentes primeiro)
+    const q = query(collection(db, "mural_publico"), orderBy("data", "desc"));
+
+    onSnapshot(q, (snapshot) => {
+        // Se não houver mensagens, aviso de "vazio"
+        if (snapshot.empty) {
+            messagesList.innerHTML = `
+                <div class="no-messages">
+                    <i class="fas fa-inbox fa-2x"></i>
+                    <p>Ainda não há mensagens públicas.</p>
+                </div>`;
+            return;
+        }
+
+        // Limpa a lista para reconstruir
+        messagesList.innerHTML = '';
+
+        snapshot.forEach((doc) => {
+            const msg = doc.data();
+            const card = document.createElement('div');
+            card.className = 'message-card';
+            
+            // Tratamento simples para data (caso o serverTimestamp ainda esteja nulo)
+            const dataFormatada = msg.data ? new Date(msg.data.seconds * 1000).toLocaleDateString('pt-BR') : 'Agora';
+
+            card.innerHTML = `
+                <div class="message-header">
+                    <strong>${msg.nome}</strong>
+                    <span>${dataFormatada}</span>
+                </div>
+                <p class="message-body">${msg.assunto}</p>
+            `;
+            messagesList.appendChild(card);
+        });
+    });
+};
+
+// Chama a função ao carregar a página
+carregarMural();

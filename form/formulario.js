@@ -30,21 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailInput = document.getElementById('email');
 
     // Controlar toggle de tipo de mensagem
-    messageToggle.addEventListener('change', () => {
-        if (messageToggle.checked) {
-            toggleText.textContent = '🌍 Mensagem Pública';
-            submitBtn.innerHTML = '<i class="fas fa-globe"></i> Publicar';
-            // Ocultar email e remover validação
-            emailField.classList.add('hidden');
-            emailInput.removeAttribute('required');
-        } else {
-            toggleText.textContent = '📨 Mensagem Particular';
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar';
-            // Mostrar email e adicionar validação
-            emailField.classList.remove('hidden');
-            emailInput.setAttribute('required', 'required');
-        }
-    });
+  function atualizarInterface() {
+    if (messageToggle.checked) {
+        toggleText.textContent = '🌍 Mensagem Pública';
+        submitBtn.innerHTML = '<i class="fas fa-globe"></i> Publicar';
+        emailField.classList.add('hidden'); // Esconde o campo
+        emailInput.removeAttribute('required');
+    } else {
+        toggleText.textContent = '📨 Mensagem Particular';
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar';
+        emailField.classList.remove('hidden'); // Mostra o campo
+        emailInput.setAttribute('required', 'required');
+    }
+}
+// 1. Escuta mudanças no toggle
+messageToggle.addEventListener('change', atualizarInterface);
+
+// 2. Sincroniza o estado 'checked' inicial do HTML
+atualizarInterface();
 
     // Função para renderizar mensagens públicas
     function renderPublicMessages() {
