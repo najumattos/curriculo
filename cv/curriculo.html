@@ -187,6 +187,16 @@
             white-space: nowrap;
             font-size: 0.8rem;
         }
+                .chama-formulario {           
+            text-decoration: none;           
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: var(--primary);
+        }
+
+        .chama-formulario:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
         .formation-card p,
         .experience-card p { margin: 2px 0; }
         .study-card p { margin: 0; }
@@ -309,7 +319,7 @@
 
         <footer class="no-print">
             <button onclick="baixarPDF()"><i class="fas fa-print"></i> Baixar PDF</button>
-            <button class="nav-button" disabled aria-disabled="true"><i class="fas fa-arrow-right"></i> Formulário</button>
+            <button class="nav-button"> <a class="chama-formulario" href="../form/formulario.html">📋 Mural</a></button>
         </footer>
     </div>
     <button class="theme-toggle no-print" id="themeToggle" title="Alternar tema" aria-label="Alternar tema claro/escuro">

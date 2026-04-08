@@ -24,8 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
         themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     });
-
-    // Obter elemento do campo de email
+    
     const emailField = document.getElementById('emailField');
     const emailInput = document.getElementById('email');
 
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (messageToggle.checked) {
         toggleText.textContent = '🌍 Mensagem Pública';
         submitBtn.innerHTML = '<i class="fas fa-globe"></i> Publicar';
-        emailField.classList.add('hidden'); // Esconde o campo
+        emailField.classList.add('hidden'); // Esconde o campo email
         emailInput.removeAttribute('required');
     } else {
         toggleText.textContent = '📨 Mensagem Particular';
@@ -67,7 +66,7 @@ atualizarInterface();
         const messagesHTML = publicMessages.reverse().map((msg, index) => `
             <div class="message-card" data-index="${publicMessages.length - 1 - index}">
                 <div class="message-header">
-                    <span class="message-author">${msg.nome}</span>
+                    <span class="message-author">${msg.titulo}</span>
                     <span class="message-date">${msg.data}</span>
                 </div>
                 <div class="message-content">${msg.mensagem.replace(/\n/g, '<br>')}</div>
@@ -85,7 +84,8 @@ atualizarInterface();
         e.preventDefault();
         
         const nome = document.getElementById('nome').value;
-        const email = messageToggle.checked ? 'público@mural.com' : document.getElementById('email').value;
+        const titulo = document.getElementById('titulo').value;
+        const email = messageToggle.checked ? 'publico@mural.com' : document.getElementById('email').value;
         const mensagem = document.getElementById('mensagem').value;
         const isPublic = messageToggle.checked;
         const tipoMensagem = isPublic ? 'Pública' : 'Particular';
@@ -93,6 +93,7 @@ atualizarInterface();
         // Salvar dados no localStorage
         const formData = {
             nome,
+            titulo,
             email,
             mensagem,
             tipo: tipoMensagem,
@@ -108,7 +109,7 @@ atualizarInterface();
         
         // Mostrar mensagem de sucesso
         const tipoMsg = isPublic ? '🌍 Pública' : '📨 Particular';
-        alert('✅ Mensagem ' + tipoMsg + ' enviada com sucesso!\n\nNome: ' + nome + '\nEmail: ' + email + '\nTipo: ' + tipoMensagem);
+        alert('✅ Mensagem ' + tipoMsg + ' enviada com sucesso!\n\nNome: ' + nome + '\nTítulo: ' + titulo + '\nEmail: ' + email + '\nTipo: ' + tipoMensagem);
         
         // Limpar formulário
         form.reset();

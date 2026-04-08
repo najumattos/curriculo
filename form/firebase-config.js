@@ -24,6 +24,7 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Impede o recarregamento da página
     const dados = {
         nome: document.getElementById('nome').value,
+        titulo: document.getElementById('titulo').value,
         mensagem: document.getElementById('mensagem').value,
         email: document.getElementById('email').value
     };
@@ -47,6 +48,7 @@ form.addEventListener('submit', async (e) => {
     try {
       await addDoc(collection(db, "mural_publico"), {
         nome: data.nome,
+        titulo: data.titulo,
         assunto: data.mensagem,
         data: serverTimestamp()
       });
@@ -59,6 +61,7 @@ form.addEventListener('submit', async (e) => {
     try {
       await addDoc(collection(db, "contatos_privados"), {
         nome: data.nome,
+        titulo: data.titulo,
         email: data.email,
         assunto: data.mensagem,
         data: serverTimestamp()
@@ -99,8 +102,8 @@ const carregarMural = () => {
             const dataFormatada = msg.data ? new Date(msg.data.seconds * 1000).toLocaleDateString('pt-BR') : 'Agora';
 
             card.innerHTML = `
-                <div class="message-header">
-                    <strong>${msg.nome}</strong>
+                <div class="message-header">                    
+                    <span><strong>${msg.nome}</strong> <i>${msg.titulo}</i></span>
                     <span>${dataFormatada}</span>
                 </div>
                 <p class="message-body">${msg.assunto}</p>
