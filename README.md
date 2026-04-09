@@ -34,3 +34,4 @@ Atualmente, o projeto está em sua versão funcional inicial.
 * [ ] Próximo passo: Ajuste de responsividade fina para dispositivos móveis específicos.
 
 Agora que você ja conhece o projeto, vai lá deixar uma mensagem :D
+https://najumattos.github.io/curriculo/
